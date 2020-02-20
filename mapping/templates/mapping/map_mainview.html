@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<meta charset="utf-8" />
+<title>メインビュー</title>
+{% endblock %}
+
+{% block content %}
+<div class="A4print">
+  <!-- 左側一覧表示 -->
+  <!-- 新規追加ボタン -->
+  <div id="list">
+  <link rel="stylesheet" href="{% static 'css/list.css' %}">
+    <div> <a href="{% url 'posts:post_add' %}" class="btn btn-primary btn-sm">新規追加</a></div>
+    <!-- {% url 'posts:post_add' %} project/urls.pyでインクルードしたpostsのうちapp/urls.pyのpost_addにリンクを貼る、という意味 -->
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+      <table class="table table-bordered table-striped mb-0">
+        <thead></thead>
+        <tbody>
+            {% for post in posts %}<!-- postモデルからデータを表に一つずつ格納する -->
+                <tr>
+                    <th width='40'>{{ post.number }}:{{ post.title }}
+                      <a href="{% url 'posts:post_edit' pk=post.pk %}" class="btn btn-primary btn-sm">編集</a>
+                      <a href="{% url 'posts:post_delete' pk=post.pk %}" class="btn btn-primary btn-sm" id="btn_del">削除</a>
+                    </th>
+                    <td width='260'>{{ post.memo }}</td>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- 削除確認ポップアップ -->
+  <script>
+      $(function(){
+          $("#btn_del").click(function(){
+              if(confirm("削除しますか？")){
+                  //yesの処理（何もぜず進む）
+              }else{
+                  //cancelの処理
+                  return false;
+              }
+          });
+      })
+  </script>
+
+<!-- 右側地図表示 -->
+  <div id="map">
+  <link rel="stylesheet" href="{% static 'css/list.css' %}">
+  <!-- <link rel="stylesheet" href="{% static '/css/app.css' %}"> -->
+  <!-- app.jsを参照している、app.jsではjsonファイルを受け取って表示させる"getJSON"を定義 -->
+  <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+  </div>
+</div>
+{% endblock %}

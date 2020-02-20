@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<meta charset="utf-8" />
+<title>ログインフォーム画面</title>
+{% endblock title %}
+
+{% block content %}
+<div class="cover text-info text-center py-5">
+   <h1 class="display-4 mb-4">Public mapping</h1>
+   <h3 class="display-4 mb-4">
+     現地調査をもっと手軽に、</br>
+     より共有しやすく。
+   </h3>
+   <p class="m-4">現地で得た情報をワンアクションで登録・共有しよう！</p>
+   <p class="mb-4 text-body">ログイン情報を入力してください</p>
+   <form method="post" class="text-body">
+       {% csrf_token %}
+       {{ form.as_p }}
+       <button type="submit" class="btn btn-primary btn-lg">ログイン</button>
+   </form>
+</div>
+{% endblock%}

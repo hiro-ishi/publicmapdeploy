@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<meta charset="utf-8" />
+<title>ログアウト画面</title>
+{% endblock title %}
+
+{% block content %}
+<div class="cover text-info text-center py-5">
+   <h1 class="display-4 mb-4">Public mapping</h1>
+   <h3 class="display-4 mb-4">ログアウトしました</h3>
+
+     {% if user.is_authenticated %}
+     <p><a href="{% url 'logout' %}"  class="btn btn-primary btn-lg">ログアウト</a></p>
+     {% else %}
+     <p><a href="{% url 'login' %}"  class="btn btn-primary btn-lg">ログインはこちら</a></p>
+     {% endif %}
+
+ </div>
+{% endblock%}

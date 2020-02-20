@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>新規追加・編集</h2>
+    <form method="POST" class="post-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">保存</button>
+    </form>
+    <div id="mapid"></div>
+   <script>
+     var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
+     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+       maxZoom: 10,
+     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '
+     }).addTo(mymap);
+   </script>
+{% endblock %}
