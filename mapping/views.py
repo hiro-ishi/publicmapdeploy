@@ -101,7 +101,7 @@ class PostViewSet(viewsets.ModelViewSet):
 class GeojsonAPIView(APIView):
     def get(self, request, *args, **keywords):
         try:
-            encjson  = serialize('geojson', Post.objects.all().order_by('number'),srid=4326, geometry_field='location', fields=('title', 'number',) )
+            encjson  = serialize('geojson', Post.objects.all().order_by('number'),srid=4326, geometry_field='location', fields=('pk','title', 'number', 'memo') )
             result   = json.loads(encjson)
             response = Response(result, status=status.HTTP_200_OK)
         except Exception as e:

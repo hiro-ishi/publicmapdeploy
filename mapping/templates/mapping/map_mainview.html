@@ -12,7 +12,9 @@
   <!-- 新規追加ボタン -->
   <div id="list">
   <link rel="stylesheet" href="{% static 'css/list.css' %}">
-    <div> <a href="{% url 'posts:post_add' %}" class="btn btn-primary btn-sm">新規追加</a></div>
+    <div class="text-center">
+      <a href="{% url 'posts:post_add' %}" class="btn btn-success btn-lg btn-block">   新規追加   </a>
+    </div>
     <!-- {% url 'posts:post_add' %} project/urls.pyでインクルードしたpostsのうちapp/urls.pyのpost_addにリンクを貼る、という意味 -->
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
       <table class="table table-bordered table-striped mb-0">
@@ -20,11 +22,18 @@
         <tbody>
             {% for post in posts %}<!-- postモデルからデータを表に一つずつ格納する -->
                 <tr>
-                    <th width='40'>{{ post.number }}:{{ post.title }}
-                      <a href="{% url 'posts:post_edit' pk=post.pk %}" class="btn btn-primary btn-sm">編集</a>
-                      <a href="{% url 'posts:post_delete' pk=post.pk %}" class="btn btn-primary btn-sm" id="btn_del">削除</a>
-                    </th>
-                    <td width='260'>{{ post.memo }}</td>
+                    <td>
+                      <p class="text-xs">
+                        <span style="white-space: nowrap;">
+                          <strong>{{ post.number }}:{{ post.title }}</strong>
+                            <a href="{% url 'posts:post_edit' pk=post.pk %}" class="btn btn-primary btn-xxs"><img src="{% static 'css/images/Modify.png' %} " width="15" height="15"></a>
+                            <a href="{% url 'posts:post_delete' pk=post.pk %}" class="btn btn-primary btn-xxs" id="btn_del"><img src="{% static 'css/images/Erase.png' %} " width="15" height="15"></a>
+                        </span>
+                      </p>
+                      <p class="text-xs">
+                        {{ post.memo }}
+                      </p>
+                    </td>
                 </tr>
 
             {% endfor %}
@@ -38,7 +47,18 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- 削除確認ポップアップ -->
   <script>
-      $(function(){
+      $(document).ready(function(){
+          $("#btn_del").on('click', function(){
+              if(confirm("削除しますか？")){
+                  //yesの処理（何もせず進む）
+              }else{
+                  //cancelの処理
+                  return false;
+              }
+          });
+      })
+  </script>
+      <!-- $(function(){
           $("#btn_del").click(function(){
               if(confirm("削除しますか？")){
                   //yesの処理（何もぜず進む）
@@ -47,9 +67,7 @@
                   return false;
               }
           });
-      })
-  </script>
-
+      }) -->
 <!-- 右側地図表示 -->
   <div id="map">
   <link rel="stylesheet" href="{% static 'css/list.css' %}">
@@ -58,4 +76,4 @@
   <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
   </div>
 </div>
-{% endblock %}
+{% endblock content %}
