@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 <meta charset="utf-8" />
@@ -6,12 +7,14 @@
 {% endblock %}
 
 {% block content %}
-<div class="cover text-info text-center py-5">
-   <h1 class="display-4 mb-4">Public mapping</h1>
-   <h3 class="display-4 mb-4">
-     現地調査をもっと手軽に、</br>
-     より共有しやすく。
-   </h3>
+<div class="cover py-5 text-center">
+   <img src="{% static 'css/images/1_Primary_logo_on_transparent_512.png' %} " class="img-fluid rounded mx-auto d-block">
+      <h3 class="display-4 mb-4">
+        現地調査をもっと手軽に、</br>
+        より共有しやすく。
+      </h3>
+</div>
+<div class="text-center">
    <p class="m-4">現地で得た情報をワンアクションで登録・共有しよう！</p>
      {% if user.is_authenticated %}
      <p><a href="{% url 'logout' %}"  class="btn btn-primary btn-lg">ログアウト</a></p>

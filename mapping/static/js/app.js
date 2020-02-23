@@ -31,7 +31,7 @@ L.control.scale({imperial: false}).addTo(map);
 
 // get geoJSON file and put markers on the map
 $.getJSON("/mapping/geojson/", function(data) {
-    var geojson = L.geoJson(data,  {
+      var geojson = L.geoJson(data,  {
       pointToLayer: function (feature, coordinates) {
          return L.marker(coordinates, {icon:
             L.AwesomeMarkers.icon({icon: '',
@@ -39,7 +39,11 @@ $.getJSON("/mapping/geojson/", function(data) {
             prefix: 'fa',
             html: (feature.properties.number)})})},
       onEachFeature: function (feature, layer) {
-            layer.bindPopup(feature.properties.title);
+            layer.bindPopup(
+              feature.properties.title
+              +'</br>'
+              + feature.properties.memo
+              );
         }
     });
     geojson.addTo(map);

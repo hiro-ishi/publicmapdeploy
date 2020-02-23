@@ -67,7 +67,7 @@ ROOT_URLCONF = 'publicmapping.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS':[os.path.join(BASE_DIR, 'templates')], #template のディレクトリを指定
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], #template のディレクトリを指定
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
