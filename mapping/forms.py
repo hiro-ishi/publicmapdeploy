@@ -20,11 +20,11 @@ class PostForm(forms.ModelForm):
     memo = forms.CharField(widget = forms.Textarea)
     location = forms.PointField(
             widget = OSMWidget(
-                attrs = {'map_width': 1024, 'map_height': 600,
+                attrs = {'map_width': 570, 'map_height': 570,
                         'template_name':'gis/openlayers-osm.html',
                         'default_lon' : 141.34964,
                         'default_lat' : 43.06417,
-                        'default_zoom' : 10}))
+                        'default_zoom' : 8}))
     class Meta:
         model = Post
         fields = ('title','number','memo', 'location')

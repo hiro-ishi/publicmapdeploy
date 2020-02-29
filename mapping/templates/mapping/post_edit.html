@@ -1,19 +1,20 @@
 {% extends 'base.html' %}
 
+{% block title %}
+<meta charset="utf-8" />
+<title>Public Mapping 新規追加・編集ビュー</title>
+{% endblock %}
+
 {% block content %}
     <h2>新規追加・編集</h2>
+    {% if request.path == "/post/add/" %}
+      <!-- 何もしない -->
+    {% else %}
+      <h4 class="font-weight-normal text-dark">地図がズームアップしすぎているのでズームアウトして位置を確認</h4>
+    {% endif %}
     <form method="POST" class="post-form">
+      <button type="submit" class="save btn btn-success btn-lg btn-block mb-2">保存</button>
       {% csrf_token %}
       {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">保存</button>
     </form>
-    <div id="mapid"></div>
-   <script>
-     var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-
-     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-       maxZoom: 10,
-     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, '
-     }).addTo(mymap);
-   </script>
 {% endblock %}

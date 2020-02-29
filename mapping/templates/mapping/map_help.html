@@ -1,13 +1,60 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 <meta charset="utf-8" />
-<title>ヘルプ画面</title>
+<title>Public Mapping ヘルプ</title>
 {% endblock %}
 
 {% block content %}
-<div class="text-info text-center py-5">
-  <h1>ヘルプ画面</h1>
-  <h2>これがヘルプ画面です</h2>
+<div class="text-info text-center">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>よく行く現場の情報を記録・そのまま共有しよう！</h3>
+      <p>現地の情報をどんどん登録・共有しましょう！</p>
+      <img src="{% static 'css/images/help_logo.png' %}" class="w-70">
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-sm-12">
+      <h3>メモの情報をアップデートしよう！</h3>
+      <p>各チームの現場が近い、10〜20人程度の規模の組織での利用を想定しています。</p>
+      <p>他のメンバーが登録した情報は自由に編集できるので、現地情報をアップデートしていきましょう！</p>
+      <img src="{% static 'css/images/help_update.png' %}" class="w-60">
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-sm-12">
+      <h3>よく見る地域に０番ピンを置こう！</h3>
+      <p>地図を開いた際、登録地点の中で番号が最も小さい地点に地図はズームインするので、よく見る地域に0番マーカーを置こう！</p>
+      <img src="{% static 'css/images/mainview480.gif' %}" class="w-70">
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-sm-12">
+      <h3>メインビュー</h3>
+      <img src="{% static 'css/images/help_mainview.png' %}" class="w-100">
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <h3>記録できる情報</h3>
+      <img src="{% static 'css/images/help_edit.png' %}" class="w-100">
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+  <div class="row text-center">
+    <div class="col-sm-12">
+      <h3>お問い合わせ</h3>
+       <p>アプリ制作者<a href="https://twitter.com/hiroishi0422">@hiro-ishi</a>へDMでお問い合わせください</p>
+       <p>公開リポジトリ<a href="https://github.com/hiro-ishi/publicmapdeploy">:Github</a></p>
+    </div>
+  </div>
+  <div class="row">
+     <h3></h3>
+  </div>
 </div>
+
+
 {% endblock %}
