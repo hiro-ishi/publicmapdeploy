@@ -61,29 +61,29 @@ Docker container:[kartoza/postgis](https://hub.docker.com/r/kartoza/postgis/tags
 
 ## Author & Acknowledgment
 ### Author
-Hiroaki Ishii</br>
+**Hiroaki Ishii**</br>
 Twitter: [@hiroishi0422](https://twitter.com/hiroishi0422)</br>
 Qiita: [@hiro-ishi](https://qiita.com/hiro-ishi)</br>
 
 ### Acknowledgment
-#### Yuu Takahashi
+**Yuu Takahashi**</br>
 Supervise, schedule management, Direction, and debug</br>
 Twitter: [@john95206](https://twitter.com/john95206)</br>
 Qiita: [@john95206](https://qiita.com/john95206)</br>
 
-#### Yusuke Sugamiya
+**Yusuke Sugamiya**</br>
 Code review, debug, and advice</br>
 Website: [dnpp.org](https://dnpp.org)</br>
 
-#### Katopan
+**Katopan**</br>
 Debug, and advise</br>
 Twitter: [@katopan_da](https://twitter.com/katopan_da)</br>
 
-#### Hiroshi Omata
+**Hiroshi Omata**</br>
 Code review and advice</br>
 Twitter: [@homata](https://twitter.com/homata)</br>
 
-#### Mami Enomoto
+**Mami Enomoto**</br>
 Code review and advice</br>
 Twitter: [@mamix1116](https://twitter.com/mamix1116)</br>
 
