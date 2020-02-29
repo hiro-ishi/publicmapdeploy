@@ -7,18 +7,16 @@
 {% endblock %}
 
 {% block content %}
-<!-- 左側一覧表示 と 右側地図表示を格納したrowを定義-->
-<div class="row">
+<div class="A4print">
   <!-- 左側一覧表示 -->
+  <!-- 新規追加ボタン -->
+  <div id="listA4">
   <link rel="stylesheet" href="{% static 'css/list.css' %}">
-  <div class="col-sm-3 mb-5">
-    <!-- 新規追加ボタン -->
-    <div class="text-center row">
-        <a href="{% url 'posts:post_add' %}" class="btn btn-success btn-lg btn-block">   新規追加   </a>
+    <div class="text-center">
+      <a href="{% url 'posts:post_add' %}" class="btn btn-success btn-lg btn-block">   新規追加   </a>
     </div>
     <!-- {% url 'posts:post_add' %} project/urls.pyでインクルードしたpostsのうちapp/urls.pyのpost_addにリンクを貼る、という意味 -->
-    <!-- 左側一覧表示 カラムのスクロールを定義-->
-    <div class="row table-wrapper-scroll-y my-custom-scrollbar">
+    <div class="table-wrapper-scroll-y-a4 my-custom-scrollbar-a4">
       <table class="table table-bordered table-striped mb-0">
         <thead></thead>
         <tbody>
@@ -27,11 +25,11 @@
                 <tr>
                     <td>
                       <p class="text-xs">
-                        <span style="white-space: normal">
-                          <a href="{% url 'posts:post_edit' pk=post.pk %}" class="btn btn-primary btn-xxs"><img src="{% static 'css/images/Modify.png' %} " width="15" height="15"></a>
-                          <a href="{% url 'posts:post_delete' pk=post.pk %}" class="btn btn-primary btn-xxs btn_del"><img src="{% static 'css/images/Erase.png' %} " width="15" height="15"></a>
+                        <span style="white-space: nowrap;">
                           <strong>{{ post.number }}:{{ post.title }}</strong>
-                        </span>
+                            <a href="{% url 'posts:post_edit' pk=post.pk %}" class="btn btn-primary btn-xxs"><img src="{% static 'css/images/Modify.png' %} " width="15" height="15"></a>
+                            <a href="{% url 'posts:post_delete' pk=post.pk %}" class="btn btn-primary btn-xxs btn_del"><img src="{% static 'css/images/Erase.png' %} " width="15" height="15"></a>
+                          </span>
                       </p>
                       <p class="text-xs">
                         {{ post.memo }}
@@ -61,16 +59,13 @@
               }
           });
       })
-  </script>
+</script>
 
 <!-- 右側地図表示 -->
-  <div  class="col-sm-9">
-    <!-- 地図のIDを設定 leaflet.jsからid名で参照されるためid名の変更注意 -->
-    <div id="map">
-    <link rel="stylesheet" href="{% static 'css/list.css' %}">
-    <!-- app.jsを参照 app.jsではjsonファイルを受け取って表示させる"getJSON"を定義 -->
-    <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
-    </div>
+  <div id="map">
+  <link rel="stylesheet" href="{% static 'css/list.css' %}">
+  <!-- app.jsを参照している、app.jsではjsonファイルを受け取って表示させる"getJSON"を定義 -->
+  <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
   </div>
 </div>
 {% endblock content %}

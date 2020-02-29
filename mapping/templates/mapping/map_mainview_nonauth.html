@@ -3,7 +3,7 @@
 
 {% block title %}
 <meta charset="utf-8" />
-<title>Public Mapping メインビュー</title>
+<title>Public Mapping サンプル</title>
 {% endblock %}
 
 {% block content %}
@@ -14,7 +14,7 @@
   <div class="col-sm-3 mb-5">
     <!-- 新規追加ボタン -->
     <div class="text-center row">
-        <a href="{% url 'posts:post_add' %}" class="btn btn-success btn-lg btn-block">   新規追加   </a>
+        <a href="{% url 'posts:post_add' %}" class="btn btn-success btn-lg btn-block">   新規追加（要ログイン）   </a>
     </div>
     <!-- {% url 'posts:post_add' %} project/urls.pyでインクルードしたpostsのうちapp/urls.pyのpost_addにリンクを貼る、という意味 -->
     <!-- 左側一覧表示 カラムのスクロールを定義-->
@@ -27,11 +27,11 @@
                 <tr>
                     <td>
                       <p class="text-xs">
-                        <span style="white-space: normal">
-                          <a href="{% url 'posts:post_edit' pk=post.pk %}" class="btn btn-primary btn-xxs"><img src="{% static 'css/images/Modify.png' %} " width="15" height="15"></a>
-                          <a href="{% url 'posts:post_delete' pk=post.pk %}" class="btn btn-primary btn-xxs btn_del"><img src="{% static 'css/images/Erase.png' %} " width="15" height="15"></a>
+                        <span style="white-space: nowrap;">
                           <strong>{{ post.number }}:{{ post.title }}</strong>
-                        </span>
+                            <!-- <a href="{% url 'posts:post_edit' pk=post.pk %}" class="btn btn-primary btn-xxs"><img src="{% static 'css/images/Modify.png' %} " width="15" height="15"></a>
+                            <a href="{% url 'posts:post_delete' pk=post.pk %}" class="btn btn-primary btn-xxs btn_del"><img src="{% static 'css/images/Erase.png' %} " width="15" height="15"></a> -->
+                          </span>
                       </p>
                       <p class="text-xs">
                         {{ post.memo }}

@@ -3,7 +3,7 @@
 
 {% block title %}
 <meta charset="utf-8" />
-<title>ログインフォーム画面</title>
+<title>Public Mapping ログイン</title>
 {% endblock title %}
 
 {% block content %}
@@ -16,6 +16,11 @@
 </div>
 <div class="text-center">
    <p class="m-4">現地で得た情報をワンアクションで登録・共有しよう！</p>
+   {% if user.is_authenticated %}
+   <!-- 何もしない -->
+   {% else %}
+   <p><a href="/map_mainview_nonauth/">ログインせずに地図を見る</a></p>
+   {% endif %}
    <p class="mb-4 text-body">ログイン情報を入力してください</p>
    <form method="post" class="text-body">
        {% csrf_token %}

@@ -3,7 +3,7 @@
 
 {% block title %}
 <meta charset="utf-8" />
-<title>トップ画面</title>
+<title>Public Mapping トップ</title>
 {% endblock %}
 
 {% block content %}
@@ -16,6 +16,12 @@
 </div>
 <div class="text-center">
    <p class="m-4">現地で得た情報をワンアクションで登録・共有しよう！</p>
+     {% if user.is_authenticated %}
+     <!-- 何もしない -->
+     {% else %}
+     <p><a href="/map_mainview_nonauth/">ログインせずに地図を見る</a></p>
+     {% endif %}
+
      {% if user.is_authenticated %}
      <p><a href="{% url 'logout' %}"  class="btn btn-primary btn-lg">ログアウト</a></p>
      {% else %}

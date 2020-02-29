@@ -38,7 +38,22 @@ def map_mainview(request):
     posts = Post.objects.all().order_by('number')
     contexts = {'posts': posts}
     return render(request, 'mapping/map_mainview.html', contexts)#{'名前': クエリセット}で引数を渡す。
-    #以下に地図を表示させるスクリプトが入る
+
+#メインビュー(閲覧専用)を定義
+def map_mainview_nonauth(request):
+    #to create a variable for our QuerySet "Posts"
+    posts = Post.objects.all().order_by('number')
+    contexts = {'posts': posts}
+    return render(request, 'mapping/map_mainview_nonauth.html', contexts)#{'名前': クエリセット}で引数を渡す。
+
+
+# お蔵入りしたA4プリント機能
+# @login_required
+# def map_mainview_a4(request):
+#     #to create a variable for our QuerySet "Posts"
+#     posts = Post.objects.all().order_by('number')
+#     contexts = {'posts': posts}
+#     return render(request, 'mapping/map_mainview_a4.html', contexts)#{'名前': クエリセット}で引数を渡す。
 
 #ヘルプページの定義
 def map_help(request):
@@ -60,7 +75,9 @@ def post_add(request): #Formを発行したいURLに対してビューの中で�
 
     else:
         form = PostForm()
-    return render(request, 'mapping/post_edit.html', {'form': form})
+    return render(request, 'mapping/post_edit.html', {
+        'form': form,
+    })
 
 # we pass extra pk parameter from urls.py
 @login_required
