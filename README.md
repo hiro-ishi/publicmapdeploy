@@ -38,9 +38,9 @@ Google Chrome (Version 80.0)
 パソコン、スマホアプリ共に動作確認
 
 ## Requirement
-Python 3.7.4<br/>
-Django 3.0.2<br/>
-Django Rest Framework 3.11.0<br/>
+Python 3.10 以上（Django 5.2 対応）<br/>
+Django 5.2 LTS（`requirements.txt` を参照）<br/>
+Django REST Framework（`requirements.txt` を参照）<br/>
 <br>
 Geo Django Dependencies<br/>
 - PostgreSQL 11.5<br/>
@@ -57,6 +57,22 @@ Docker container:[kartoza/postgis](https://hub.docker.com/r/kartoza/postgis/tags
 
 ### 本番環境（デプロイ先）
 [Pythonanywhere.com](https://www.pythonanywhere.com/)
+
+### 更新・再デプロイ時の設定（2026年）
+
+Python 3.10 以上の仮想環境に `pip install -r requirements.txt` で依存関係を入れる。
+GeoDjango を使うため、PostgreSQL、PostGIS、GDAL、GEOS もサーバー側に必要。
+アプリを起動する前に環境変数 `DJANGO_SECRET_KEY`、`DJANGO_ALLOWED_HOSTS`、
+`DB_NAME`、`DB_USER`、`DB_PASSWORD`、`DB_HOST`、`DB_PORT` を設定する。
+`DJANGO_ALLOWED_HOSTS` はカンマ区切りで、実際の公開ホスト名を指定する。
+`DJANGO_DEBUG` は未設定のままにする（ローカル開発時だけ `true`）。
+以前の `local_settings.py` に設定がある場合も読み込まれるが、DB接続情報は環境変数に移す。
+
+本番DBをバックアップした上で `python manage.py check --deploy`、
+`python manage.py migrate --plan`、`python manage.py migrate`、
+`python manage.py collectstatic --noinput` を行い、ログイン・地図表示・地点の追加・編集・削除を確認する。
+このリポジトリの過去コミットにDBパスワードが含まれていたため、実際に使っていたパスワードなら
+サーバー側で変更する。ソースから削除してもGit履歴からは消えない。
 
 ## Author & Acknowledgment
 ### Author

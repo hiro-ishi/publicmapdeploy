@@ -29,7 +29,10 @@
                       <p class="text-xs">
                         <span style="white-space: normal">
                           <a href="{% url 'posts:post_edit' pk=post.pk %}" class="btn btn-primary btn-xxs"><img src="{% static 'css/images/Modify.png' %} " width="15" height="15"></a>
-                          <a href="{% url 'posts:post_delete' pk=post.pk %}" class="btn btn-primary btn-xxs btn_del"><img src="{% static 'css/images/Erase.png' %} " width="15" height="15"></a>
+                          <form method="post" action="{% url 'posts:post_delete' pk=post.pk %}" class="d-inline" onsubmit="return confirm('削除しますか？');">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary btn-xxs"><img src="{% static 'css/images/Erase.png' %}" width="15" height="15" alt="削除"></button>
+                          </form>
                           <strong>{{ post.number }}:{{ post.title }}</strong>
                         </span>
                       </p>
@@ -48,20 +51,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-  <script>
-      // 削除確認ポップアップ
-      $(function(){
-          $(".btn_del").click(function(){
-              if(confirm("削除しますか？")){
-                  //yesの処理（何もせず進む）
-              }else{
-                  //cancelの処理
-                  return false;
-              }
-          });
-      })
-  </script>
 
 <!-- 右側地図表示 -->
   <div  class="col-sm-8">

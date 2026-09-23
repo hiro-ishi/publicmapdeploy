@@ -28,15 +28,3 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title','number','memo', 'location')
-
-    class Media:
-        css = {
-            'all': (
-                'https://cdnjs.cloudflare.com/ajax/libs/ol3/3.20.1/ol.css',
-                'gis/css/ol3.css',
-            )
-        }
-        js = (
-            'https://cdnjs.cloudflare.com/ajax/libs/ol3/3.20.1/ol.js',
-            'gis/js/OLMapWidget.js',
-        )

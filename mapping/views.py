@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 
 #GeoDjangoからインポート
 from django.contrib.gis import forms
@@ -16,6 +17,7 @@ from rest_framework_gis.filters import DistanceToPointFilter, InBBoxFilter
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 import traceback
 import json
 from django.core.serializers import serialize
@@ -96,6 +98,8 @@ def post_edit(request, pk):
     return render(request, 'mapping/post_edit.html', {'form': form})
 
 #delete
+@login_required
+@require_POST
 def post_delete(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
@@ -108,6 +112,7 @@ class MyPagination(PageNumberPagination):
 
 # DRFの設定
 class PostViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     pagination_class = MyPagination
