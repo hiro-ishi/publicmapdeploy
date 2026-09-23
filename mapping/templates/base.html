@@ -50,7 +50,7 @@
                   <li class="nav-item"> <a href="/map_mainview/" class="nav-link"> メインビュー </a> </li>
                   <li class="nav-item"> <a href="/help/" class="nav-link"> ヘルプ </a> </li>
                   {% if user.is_authenticated %}
-                    <li class="nav-item"> <a href="{% url 'logout' %}"  class="nav-link">ログアウト</a></li>
+                    <li class="nav-item"><form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type="submit" class="nav-link btn btn-link">ログアウト</button></form></li>
                   {% else %}
                     <li class="nav-item"> <a href="{% url 'login' %}"  class="nav-link">ログイン</a></li>
                   {% endif %}

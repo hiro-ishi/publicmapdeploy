@@ -25,16 +25,17 @@ try:
 except ImportError:
     pass
 
-# SECURITY WARNING: don't run with debug turned on in production!
-# for development
-DEBUG = True
-# for product
-# DEBUG = False
+DEBUG = os.environ.get('DJANGO_DEBUG', '').lower() == 'true'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', globals().get('SECRET_KEY', ''))
+if not SECRET_KEY:
+    raise RuntimeError('Set DJANGO_SECRET_KEY in the environment.')
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
 
 # for development
 #ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com']
 # for product
-ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com']
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 # Application definition
 INSTALLED_APPS = [
@@ -89,11 +90,11 @@ WSGI_APPLICATION = 'publicmapping.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'mapping',
-        'USER': 'user001',
-        'PASSWORD': 'hirohiro03',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.environ.get('DB_NAME', 'mapping'),
+        'USER': os.environ.get('DB_USER', ''),
+        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
 #Authentication
@@ -129,8 +130,6 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
-
 USE_TZ = True
 
 
@@ -139,3 +138,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

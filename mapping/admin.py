@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import CustomUser, Post
-from django.contrib.gis.admin import OSMGeoAdmin
+from django.contrib.gis.admin import GISModelAdmin
 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
@@ -14,5 +14,5 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(CustomUser, CustomUserAdmin)
 
 @admin.register(Post)
-class PostAdmin(OSMGeoAdmin):
+class PostAdmin(GISModelAdmin):
     list_display = ('number', 'location')
